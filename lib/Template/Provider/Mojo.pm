@@ -14,10 +14,8 @@ our $VERSION = '0.002';
 
 Class::Method::Modifiers::after '_init' => sub {
 	my ($self, $params) = @_;
-	$self->{MOJO_RENDERER} = delete $params->{MOJO_RENDERER};
-	weaken $self->{MOJO_RENDERER};
-	$self->{MOJO_RENDERER} //= Mojolicious::Renderer->new;
-	$self->{ENCODING} //= $self->{MOJO_RENDERER}->encoding;
+	weaken($self->{MOJO_RENDERER} = delete $params->{MOJO_RENDERER});
+	$self->{ENCODING} //= $self->_mojo_renderer->encoding;
 };
 
 sub fetch {
@@ -31,8 +29,8 @@ sub fetch {
 		$data = $data->{data} unless $error;
 	} else {
 		# Use renderer to find template
-		my $renderer = $self->{MOJO_RENDERER};
-		my $options = $self->_template_options($name);
+		my $renderer = $self->_mojo_renderer;
+		my $options = _template_options($renderer, $name);
 		
 		# Try template
 		if (defined(my $path = $renderer->template_path($options))) {
@@ -58,8 +56,8 @@ sub load {
 	my ($data, $error);
 	
 	# Use renderer to find template
-	my $renderer = $self->{MOJO_RENDERER};
-	my $options = $self->_template_options($name);
+	my $renderer = $self->_mojo_renderer;
+	my $options = _template_options($renderer, $name);
 	
 	# Try template
 	if (defined(my $path = $renderer->template_path($options))) {
@@ -84,10 +82,11 @@ sub load {
 	}
 }
 
+sub _mojo_renderer { shift->{MOJO_RENDERER} //= Mojolicious::Renderer->new }
+
 # Split template name back into options
 sub _template_options {
-	my ($self, $name) = @_;
-	my $renderer = $self->{MOJO_RENDERER};
+	my ($renderer, $name) = @_;
 	my $options = {};
 	if ($name =~ m/^(.+)\.(.+)\.(.+)\z/) {
 		$options->{template} = $1;
