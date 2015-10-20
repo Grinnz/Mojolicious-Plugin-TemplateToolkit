@@ -11,7 +11,6 @@ use Mojo::Util 'encode';
 use Test::Mojo;
 
 plugin 'TemplateToolkit';
-app->log->level('fatal');
 
 get '/inline/:foo' => { handler => 'tt2', inline => '[% foo %] ☃' };
 get '/data/:foo' => { handler => 'tt2' } => 'data_section';
