@@ -42,6 +42,11 @@
             "Template" : "2.26",
             "perl" : "5.010001"
          }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.88"
+         }
       }
    },
    "provides" : {
@@ -51,6 +56,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit/issues"
+      },
+      "homepage" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit.git",
+         "web" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit"
+      }
+   },
    "version" : "0.001",
    "x_contributors" : [
       "Dan Book <grinnz@grinnz.com>"
