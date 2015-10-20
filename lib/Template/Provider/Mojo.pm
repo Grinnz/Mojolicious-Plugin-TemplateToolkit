@@ -119,8 +119,8 @@ L<Template::Provider::Mojo> is a L<Template::Provider> subclass that uses a
 L<Mojolicious::Renderer> instance to resolve template names. This means that
 file-based templates will be looked up in L<Mojolicious::Renderer/"paths">, and
 DATA templates will be looked up in L<Mojolicious::Renderer/"classes">. The
-C<ENCODING> configuration setting will also be set from
-L<Mojolicious::Renderer/"encoding"> on initialization.
+C<ENCODING> configuration setting will be initialized to
+L<Mojolicious::Renderer/"encoding"> if unset.
 
 =head1 METHODS
 
