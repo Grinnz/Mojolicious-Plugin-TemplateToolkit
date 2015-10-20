@@ -4,7 +4,7 @@ use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::Util qw(encode md5_sum);
 use Template;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 sub register {
 	my ($self, $app, $conf) = @_;
