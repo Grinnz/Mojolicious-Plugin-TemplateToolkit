@@ -17,6 +17,8 @@ is $c->render_to_string(inline => '[% foo %]', foo => 'bar'), 'bar', 'stash vari
 
 # Helper
 is $c->render_to_string(inline => '[% stash("foo") %]', foo => 'bar'), 'bar', 'helper works';
+like $c->render_to_string(inline => "[% link_to('some link', 'http://www.example.com') %]"),
+	qr(href.+http://www\.example\.com.+some link), 'helper works';
 
 # Controller
 is $c->render_to_string(inline => '[% c.stash.foo %]', foo => 'bar'), 'bar', 'controller is accessible';

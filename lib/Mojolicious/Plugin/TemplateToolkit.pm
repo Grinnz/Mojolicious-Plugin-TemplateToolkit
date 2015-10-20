@@ -108,12 +108,14 @@ and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
  [% END %]
  
  [% link_to('Template Toolkit', 'http://www.template-toolkit.org') %]
+ 
+ [% c.param('foo') %]
 
 Unless set with the L</"template"> option, the
-L<configuration|Template::Manual::Config> C<INCLUDE_PATH> and C<ENCODING> will
-be set to the current values of L<Mojolicious::Renderer/"paths"> and
-L<Mojolicious::Renderer/"encoding">, so make sure to set these before
-registering the plugin if needed.
+L<configuration settings|Template::Manual::Config> C<INCLUDE_PATH> and
+C<ENCODING> will be set to the values of L<Mojolicious::Renderer/"paths"> and
+L<Mojolicious::Renderer/"encoding"> when the plugin is registered, so make sure
+to set these attributes before registering the plugin if needed.
 
 =head1 OPTIONS
 
