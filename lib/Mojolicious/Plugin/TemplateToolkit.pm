@@ -3,6 +3,7 @@ use Mojo::Base 'Mojolicious::Plugin';
 
 use Mojo::Util qw(encode md5_sum);
 use Template;
+use Template::Provider::Mojo;
 
 our $VERSION = '0.002';
 
@@ -10,8 +11,8 @@ sub register {
 	my ($self, $app, $conf) = @_;
 	
 	my $tt_config = $conf->{template} || {};
-	$tt_config->{INCLUDE_PATH} //= $app->renderer->paths;
-	$tt_config->{ENCODING} //= $app->renderer->encoding;
+	$tt_config->{MOJO_RENDERER} = $app->renderer;
+	push @{$tt_config->{LOAD_TEMPLATES}}, Template::Provider::Mojo->new($tt_config);
 	my $tt = Template->new($tt_config);
 	
 	$app->renderer->add_handler($conf->{name} || 'tt2' => sub {
@@ -112,16 +113,13 @@ and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
  
  [% c.param('foo') %]
 
-Unless set with the L</"template"> option, the
-L<configuration settings|Template::Manual::Config> C<INCLUDE_PATH> and
-C<ENCODING> will be set to the values of L<Mojolicious::Renderer/"paths"> and
-L<Mojolicious::Renderer/"encoding"> when the plugin is registered, so make sure
-to set these attributes before registering the plugin if needed.
 
 Along with standard template files, inline and data section templates can be
-rendered in the standard way, but note that since C<Template Toolkit> is not
-aware of data section templates, C<INCLUDE> and similar directives can only
-reference standard template files.
+rendered in the standard way. L<Template::Provider::Mojo> allows template files
+and data sections to be retrieved using L<Mojolicious::Renderer> for both
+standard rendering and directives such as C<INCLUDE>. This means that instead
+of specifying the C<INCLUDE_PATH> setting for L<Template>, you should set
+L<Mojolicious::Renderer/"paths"> to the appropriate paths.
 
 =head1 OPTIONS
 
@@ -171,4 +169,4 @@ This is free software, licensed under:
 
 =head1 SEE ALSO
 
-L<Mojolicious::Renderer>, L<Template>
+L<Mojolicious::Renderer>, L<Template>, L<Template::Provider::Mojo>
