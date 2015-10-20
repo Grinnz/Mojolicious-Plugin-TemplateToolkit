@@ -49,11 +49,11 @@ and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
 
 
 Along with standard template files, inline and data section templates can be
-rendered in the standard way. L<Template::Provider::Mojo> allows template files
-and data sections to be retrieved using L<Mojolicious::Renderer> for both
-standard rendering and directives such as C<INCLUDE>. This means that instead
-of specifying the C<INCLUDE_PATH> setting for L<Template>, you should set
-L<Mojolicious::Renderer/"paths"> to the appropriate paths.
+rendered in the standard way. Template files and data sections will be
+retrieved using L<Mojolicious::Renderer> via L<Template::Provider::Mojo> for
+both standard rendering and directives such as C<INCLUDE>. This means that
+instead of specifying L<INCLUDE_PATH|Template::Manual::Config/"INCLUDE_PATH">,
+you should set L<Mojolicious::Renderer/"paths"> to the appropriate paths.
 
 =head1 OPTIONS
 

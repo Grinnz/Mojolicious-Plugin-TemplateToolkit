@@ -7,14 +7,14 @@ use parent 'Template::Provider';
 use Class::Method::Modifiers ();
 use Mojo::Util;
 use Mojolicious::Renderer;
-use Scalar::Util 'weaken';
+use Scalar::Util;
 use Template::Constants;
 
 our $VERSION = '0.002';
 
 Class::Method::Modifiers::after '_init' => sub {
 	my ($self, $params) = @_;
-	weaken($self->{MOJO_RENDERER} = delete $params->{MOJO_RENDERER});
+	Scalar::Util::weaken($self->{MOJO_RENDERER} = delete $params->{MOJO_RENDERER});
 	$self->{ENCODING} //= $self->_mojo_renderer->encoding;
 };
 
@@ -120,8 +120,8 @@ Template::Provider::Mojo - Use Mojolicious to provide templates
 
 L<Template::Provider::Mojo> is a L<Template::Provider> subclass that uses a
 L<Mojolicious::Renderer> instance to resolve template names. This means that
-file-based templates will be looked up in L<Mojolicious::Renderer/"paths">, and
-DATA templates will be looked up in L<Mojolicious::Renderer/"classes">. The
+L<Mojolicious::Renderer/"paths"> will be searched for file-based templates, and
+L<Mojolicious::Renderer/"classes"> will be searched for DATA templates. The
 C<ENCODING> configuration setting will be initialized to
 L<Mojolicious::Renderer/"encoding"> if unset.
 
