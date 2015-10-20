@@ -32,7 +32,7 @@ sub register {
 		}
 		
 		# Stash values
-		$params{$_} = $c->stash->{$_} for sort grep { m/^\w+\z/ } keys %{$c->stash};
+		$params{$_} = $c->stash->{$_} for grep { m/^\w+\z/ } keys %{$c->stash};
 		$params{self} = $params{c} = $c;
 		
 		# Inline
