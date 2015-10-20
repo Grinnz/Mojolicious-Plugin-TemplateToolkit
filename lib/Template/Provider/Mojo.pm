@@ -7,13 +7,16 @@ use parent 'Template::Provider';
 use Class::Method::Modifiers ();
 use Mojo::Util;
 use Mojolicious::Renderer;
+use Scalar::Util 'weaken';
 use Template::Constants;
 
 our $VERSION = '0.002';
 
 Class::Method::Modifiers::after '_init' => sub {
 	my ($self, $params) = @_;
-	$self->{MOJO_RENDERER} = $params->{MOJO_RENDERER} // Mojolicious::Renderer->new;
+	$self->{MOJO_RENDERER} = delete $params->{MOJO_RENDERER};
+	weaken $self->{MOJO_RENDERER};
+	$self->{MOJO_RENDERER} //= Mojolicious::Renderer->new;
 	$self->{ENCODING} //= $self->{MOJO_RENDERER}->encoding;
 };
 
@@ -109,7 +112,8 @@ Template::Provider::Mojo - Use Mojolicious to provide templates
 
 =head1 SYNOPSIS
 
- $provider = Template::Provider::Mojo->new({MOJO_RENDERER => Mojolicious->new->renderer});
+ my $app = Mojolicious->new;
+ $provider = Template::Provider::Mojo->new({MOJO_RENDERER => $app->renderer});
  
  ($template, $error) = $provider->fetch($name);
 
