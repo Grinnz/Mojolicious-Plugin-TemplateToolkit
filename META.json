@@ -38,8 +38,11 @@
       },
       "runtime" : {
          "requires" : {
+            "Class::Method::Modifiers" : "0",
             "Mojolicious" : "6.0",
             "Template" : "2.26",
+            "Template::Provider" : "2.94",
+            "parent" : "0",
             "perl" : "5.010001"
          }
       },
@@ -52,6 +55,10 @@
    "provides" : {
       "Mojolicious::Plugin::TemplateToolkit" : {
          "file" : "lib/Mojolicious/Plugin/TemplateToolkit.pm",
+         "version" : "0.002"
+      },
+      "Template::Provider::Mojo" : {
+         "file" : "lib/Template/Provider/Mojo.pm",
          "version" : "0.002"
       }
    },

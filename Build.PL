@@ -82,8 +82,11 @@ EOW
       "module_name" => "Mojolicious::Plugin::TemplateToolkit",
       "recursive_test_files" => 1,
       "requires" => {
+        "Class::Method::Modifiers" => 0,
         "Mojolicious" => "6.0",
         "Template" => "2.26",
+        "Template::Provider" => "2.94",
+        "parent" => 0,
         "perl" => "5.010001"
       },
       "test_requires" => {
