@@ -92,7 +92,8 @@ Mojolicious
 
 L<Mojolicious::Plugin::TemplateToolkit> is a renderer for C<tt2> or
 C<Template Toolkit> templates. See L<Template> and L<Template::Manual> for
-details on the C<Template Toolkit> format.
+details on the C<Template Toolkit> format, and L<Mojolicious::Guides::Rendering>
+for general information on rendering in L<Mojolicious>.
 
 L<Mojolicious> helpers and stash values will be exposed directly as
 L<variables|Template::Manual::Variables> in the templates, and the current
@@ -116,6 +117,11 @@ L<configuration settings|Template::Manual::Config> C<INCLUDE_PATH> and
 C<ENCODING> will be set to the values of L<Mojolicious::Renderer/"paths"> and
 L<Mojolicious::Renderer/"encoding"> when the plugin is registered, so make sure
 to set these attributes before registering the plugin if needed.
+
+Along with standard template files, inline and data section templates can be
+rendered in the standard way, but note that since C<Template Toolkit> is not
+aware of data section templates, C<INCLUDE> and similar directives can only
+reference standard template files.
 
 =head1 OPTIONS
 
