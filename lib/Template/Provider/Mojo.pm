@@ -10,7 +10,7 @@ use Mojolicious::Renderer;
 use Scalar::Util;
 use Template::Constants;
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 Class::Method::Modifiers::after '_init' => sub {
 	my ($self, $params) = @_;

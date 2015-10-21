@@ -5,7 +5,7 @@ use Mojo::Util qw(encode md5_sum);
 use Template;
 use Template::Provider::Mojo;
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 sub register {
 	my ($self, $app, $conf) = @_;
