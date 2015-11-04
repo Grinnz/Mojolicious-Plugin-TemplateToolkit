@@ -56,11 +56,11 @@
    "provides" : {
       "Mojolicious::Plugin::TemplateToolkit" : {
          "file" : "lib/Mojolicious/Plugin/TemplateToolkit.pm",
-         "version" : "0.002"
+         "version" : "0.003"
       },
       "Template::Provider::Mojo" : {
          "file" : "lib/Template/Provider/Mojo.pm",
-         "version" : "0.002"
+         "version" : "0.003"
       }
    },
    "release_status" : "stable",
@@ -75,7 +75,7 @@
          "web" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit"
       }
    },
-   "version" : "0.002",
+   "version" : "0.003",
    "x_contributors" : [
       "Dan Book <grinnz@grinnz.com>"
    ]
