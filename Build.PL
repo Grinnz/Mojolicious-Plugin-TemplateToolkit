@@ -90,7 +90,7 @@ EOW
       "recursive_test_files" => 1,
       "requires" => {
         "Class::Method::Modifiers" => 0,
-        "Mojolicious" => "6.0",
+        "Mojolicious" => "6.33",
         "Scalar::Util" => 0,
         "Template" => "2.26",
         "Template::Provider" => "2.94",
