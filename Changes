@@ -1,4 +1,5 @@
 {{$NEXT}}
+  - Removed randomly failing OUTLINE_TAG test
 
 0.002     2015-10-20 20:03:54 EDT
   - Added Template::Provider::Mojo to resolve templates using
