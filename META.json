@@ -61,11 +61,11 @@
    "provides" : {
       "Mojolicious::Plugin::TemplateToolkit" : {
          "file" : "lib/Mojolicious/Plugin/TemplateToolkit.pm",
-         "version" : "0.003"
+         "version" : "0.004"
       },
       "Template::Provider::Mojo" : {
          "file" : "lib/Template/Provider/Mojo.pm",
-         "version" : "0.003"
+         "version" : "0.004"
       }
    },
    "release_status" : "stable",
@@ -79,12 +79,12 @@
          "url" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit.git",
          "web" : "https://github.com/Grinnz/Mojolicious-Plugin-TemplateToolkit"
       },
-      "x_IRC" : "irc://irc.perl.org/#mojo"
+      "x_IRC" : "irc://irc.freenode.net/#mojo"
    },
-   "version" : "0.003",
+   "version" : "0.004",
    "x_Dist_Zilla" : {
       "perl" : {
-         "version" : "5.026002"
+         "version" : "5.028000"
       },
       "plugins" : [
          {
@@ -156,7 +156,7 @@
                }
             },
             "name" : "@Author::DBOOK/Git::Contributors",
-            "version" : "0.034"
+            "version" : "0.035"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaNoIndex",
@@ -275,7 +275,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "v0.003",
+                  "tag" : "v0.004",
                   "tag_format" : "v%v",
                   "tag_message" : "v%v"
                },
@@ -506,7 +506,7 @@
          {
             "class" : "Dist::Zilla::Plugin::InstallGuide",
             "name" : "@Author::DBOOK/InstallGuide",
-            "version" : "1.200009"
+            "version" : "1.200011"
          },
          {
             "class" : "Dist::Zilla::Plugin::Manifest",
@@ -595,7 +595,7 @@
    "x_contributors" : [
       "Dan Book <grinnz@grinnz.com>"
    ],
-   "x_generated_by_perl" : "v5.26.2",
-   "x_serialization_backend" : "Cpanel::JSON::XS version 4.02"
+   "x_generated_by_perl" : "v5.28.0",
+   "x_serialization_backend" : "Cpanel::JSON::XS version 4.06"
 }
 
