@@ -2,7 +2,6 @@ use Mojo::Base -strict;
 
 use Test::More;
 use Mojolicious;
-use Path::Tiny;
 use FindBin qw($Bin);
 
 # Partial rendering
