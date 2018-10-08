@@ -92,6 +92,16 @@ C<Template Toolkit> templates. See L<Template> and L<Template::Manual> for
 details on the C<Template Toolkit> format, and L<Mojolicious::Guides::Rendering>
 for general information on rendering in L<Mojolicious>.
 
+Along with standard template files, inline and data section templates can be
+rendered in the standard way. Template files and data sections will be
+retrieved using L<Mojolicious::Renderer> via L<Template::Provider::Mojo> for
+both standard rendering and directives such as C<INCLUDE>. This means that
+instead of specifying L<INCLUDE_PATH|Template::Manual::Config/"INCLUDE_PATH">,
+you should set L<Mojolicious::Renderer/"paths"> to the appropriate paths.
+
+ $app->renderer->paths(['/path/to/templates']);
+ push @{$app->renderer->paths}, '/path/to/more/templates';
+
 L<Mojolicious> helpers and stash values will be exposed directly as
 L<variables|Template::Manual::Variables> in the templates, and the current
 controller object will be available as C<c> or C<self>, similar to
@@ -110,13 +120,6 @@ and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
  [% c.param('foo') %]
 
 
-Along with standard template files, inline and data section templates can be
-rendered in the standard way. Template files and data sections will be
-retrieved using L<Mojolicious::Renderer> via L<Template::Provider::Mojo> for
-both standard rendering and directives such as C<INCLUDE>. This means that
-instead of specifying L<INCLUDE_PATH|Template::Manual::Config/"INCLUDE_PATH">,
-you should set L<Mojolicious::Renderer/"paths"> to the appropriate paths.
-
 =head1 OPTIONS
 
 L<Mojolicious::Plugin::TemplateToolkit> supports the following options.
@@ -134,6 +137,9 @@ Handler name, defaults to C<tt2>.
  plugin TemplateToolkit => {template => {INTERPOLATE => 1}};
 
 Configuration values passed to L<Template> object used to render templates.
+Note that L<Template::Provider::Mojo> will use L<Mojolicious::Renderer/"paths">
+to find templates, not L<INCLUDE_PATH|Template::Manual::Config/"INCLUDE_PATH">
+specified here.
 
 =head1 METHODS
 
