@@ -11,8 +11,7 @@ sub register {
 	my ($self, $app, $conf) = @_;
 	
 	my $tt_config = $conf->{template} || {};
-	my $incl_path = $tt_config->{INCLUDE_PATH};
-	if (defined $incl_path) {
+	if (my $incl_path = $tt_config->{INCLUDE_PATH}) {
 	    push(@{$app->renderer->paths}, ref($incl_path) eq 'ARRAY' ? @$incl_path : $incl_path);
 	}
 	$tt_config->{MOJO_RENDERER} = $app->renderer;
