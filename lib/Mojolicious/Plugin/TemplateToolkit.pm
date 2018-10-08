@@ -11,6 +11,9 @@ sub register {
 	my ($self, $app, $conf) = @_;
 	
 	my $tt_config = $conf->{template} || {};
+	if ($tt_config->{INCLUDE_PATH}) {
+	    push(@{$app->renderer->paths}, $tt_config->{INCLUDE_PATH});
+	}
 	$tt_config->{MOJO_RENDERER} = $app->renderer;
 	push @{$tt_config->{LOAD_TEMPLATES}}, Template::Provider::Mojo->new($tt_config);
 	my $tt = Template->new($tt_config);

@@ -2,6 +2,8 @@ use Mojo::Base -strict;
 
 use Test::More;
 use Mojolicious;
+use Path::Tiny;
+use FindBin qw($Bin);
 
 # Partial rendering
 my $app = Mojolicious->new(secrets => ['works']);
@@ -37,5 +39,16 @@ $c->app->log->level('fatal');
 is $c->render_to_string(inline => 'foo', handler => 'foo'), 'foo', 'name works';
 is $c->render_to_string(inline => '$foo', handler => 'foo', foo => 'bar'), 'bar', 'interpolate works';
 is $c->render_to_string(inline => '<% foo %>', handler => 'foo', foo => 'bar'), 'bar', 'tags work';
+
+$app = Mojolicious->new(secrets => ['works']);
+$tt_config = { INTERPOLATE => 1, INCLUDE_PATH => $Bin . '/share/templates', DELIMITER => '/' };
+$app->plugin(TemplateToolkit => { name => 'tt2', template => $tt_config });
+$c = $app->build_controller;
+$c->app->log->level('fatal');
+#$c->app->log->handle(\*STDERR);
+like($c->render_to_string(template => 'test', handler => 'tt2', format => 'html', foo => 'bar'),
+    qr{<body>[\n\s]+bar[\n\s]+</body>},
+    'rendering from TT included path works'
+);
 
 done_testing();
