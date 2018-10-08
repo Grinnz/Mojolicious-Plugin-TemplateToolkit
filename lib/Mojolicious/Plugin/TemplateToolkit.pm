@@ -11,6 +11,9 @@ sub register {
 	my ($self, $app, $conf) = @_;
 	
 	my $tt_config = $conf->{template} || {};
+	if (my $incl_path = $tt_config->{INCLUDE_PATH}) {
+	    push(@{$app->renderer->paths}, ref($incl_path) eq 'ARRAY' ? @$incl_path : $incl_path);
+	}
 	$tt_config->{MOJO_RENDERER} = $app->renderer;
 	push @{$tt_config->{LOAD_TEMPLATES}}, Template::Provider::Mojo->new($tt_config);
 	my $tt = Template->new($tt_config);
@@ -134,6 +137,9 @@ Handler name, defaults to C<tt2>.
  plugin TemplateToolkit => {template => {INTERPOLATE => 1}};
 
 Configuration values passed to L<Template> object used to render templates.
+
+When configuration contains a C<INCLUDE_PATH> value, will automatically
+push that to the Mojolicious rendering paths.
 
 =head1 METHODS
 
