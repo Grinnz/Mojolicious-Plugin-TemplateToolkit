@@ -89,6 +89,7 @@ EOW
       "module_name" => "Mojolicious::Plugin::TemplateToolkit",
       "recursive_test_files" => 1,
       "requires" => {
+        "Carp" => 0,
         "Class::Method::Modifiers" => 0,
         "Mojolicious" => "6.51",
         "Scalar::Util" => 0,
