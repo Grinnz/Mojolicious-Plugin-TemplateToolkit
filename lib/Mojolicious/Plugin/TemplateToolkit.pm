@@ -1,6 +1,7 @@
 package Mojolicious::Plugin::TemplateToolkit;
 use Mojo::Base 'Mojolicious::Plugin';
 
+use Carp;
 use Mojo::Util qw(encode md5_sum);
 use Template;
 use Template::Provider::Mojo;
@@ -27,7 +28,7 @@ sub register {
 		# Helpers
 		foreach my $method (grep { m/^\w+\z/ } keys %{$renderer->helpers}) {
 			my $sub = $renderer->helpers->{$method};
-			$params{$method} = sub { $c->$sub(@_) };
+			$params{$method} = sub { carp "Calling helpers directly in templates is deprecated. Use c.$method"; $c->$sub(@_) };
 		}
 		
 		# Stash values
@@ -102,11 +103,16 @@ you should set L<Mojolicious::Renderer/"paths"> to the appropriate paths.
  $app->renderer->paths(['/path/to/templates']);
  push @{$app->renderer->paths}, '/path/to/more/templates';
 
-L<Mojolicious> helpers and stash values will be exposed directly as
+L<Mojolicious> stash values will be exposed directly as
 L<variables|Template::Manual::Variables> in the templates, and the current
 controller object will be available as C<c> or C<self>, similar to
-L<Mojolicious::Plugin::EPRenderer>. See L<Mojolicious::Plugin::DefaultHelpers>
-and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
+L<Mojolicious::Plugin::EPRenderer>. Helper methods can be called on the
+controller object directly or via the C<helpers> method. See
+L<Mojolicious::Plugin::DefaultHelpers> and L<Mojolicious::Plugin::TagHelpers>
+for a list of all built-in helpers.
+
+Accessing helper methods directly as variables rather than via the controller
+object is deprecated and may be removed in a future release.
 
  $c->stash(description => 'template engine');
  $c->stash(engines => [qw(Template::Toolkit Text::Template)]);
@@ -115,7 +121,7 @@ and L<Mojolicious::Plugin::TagHelpers> for a list of all built-in helpers.
    [% engine %] is a [% description %].
  [% END %]
  
- [% link_to('Template Toolkit', 'http://www.template-toolkit.org') %]
+ [% c.helpers.link_to('Template Toolkit', 'http://www.template-toolkit.org') %]
  
  [% c.param('foo') %]
 

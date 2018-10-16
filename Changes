@@ -1,4 +1,7 @@
 {{$NEXT}}
+  - Deprecated calling helpers directly as template variables in favor of
+    calling them via the 'c' controller variable, to disambiguate helpers from
+    stash variables
 
 0.003     2018-06-14 17:45:49 EDT
   - Removed randomly failing OUTLINE_TAG test
