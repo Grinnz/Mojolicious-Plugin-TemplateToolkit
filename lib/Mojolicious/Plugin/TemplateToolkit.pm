@@ -28,7 +28,7 @@ sub register {
 		# Helpers
 		foreach my $method (grep { m/^\w+\z/ } keys %{$renderer->helpers}) {
 			my $sub = $renderer->helpers->{$method};
-			$params{$method} = sub { carp "Calling helpers directly in templates is deprecated. Use c.$method"; $c->$sub(@_) };
+			$params{$method} = sub { carp "Calling helpers directly in templates is deprecated. Use c.$method or c.helpers.$method"; $c->$sub(@_) };
 		}
 		
 		# Stash values
