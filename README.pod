@@ -44,7 +44,7 @@ L<Mojolicious> stash values will be exposed directly as
 L<variables|Template::Manual::Variables> in the templates, and the current
 controller object will be available as C<c> or C<self>, similar to
 L<Mojolicious::Plugin::EPRenderer>. Helper methods can be called on the
-controller object or a more efficient
+L<controller object|Mojolicious::Controller/"AUTOLOAD"> or a more efficient
 L<proxy object|Mojolicious::Controller/"helpers"> available as C<h>. See
 L<Mojolicious::Plugin::DefaultHelpers> and L<Mojolicious::Plugin::TagHelpers>
 for a list of all built-in helpers.
