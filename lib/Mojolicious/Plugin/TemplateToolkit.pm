@@ -94,10 +94,10 @@ C<Template Toolkit> templates. See L<Template> and L<Template::Manual> for
 details on the C<Template Toolkit> format, and L<Mojolicious::Guides::Rendering>
 for general information on rendering in L<Mojolicious>.
 
-Along with standard template files, inline and data section templates can be
-rendered in the standard way. Template files and data sections will be
+Along with template files, inline and data section templates can be rendered in
+the standard Mojolicious fashion. Template files and data sections will be
 retrieved using L<Mojolicious::Renderer> via L<Template::Provider::Mojo> for
-both standard rendering and directives such as C<INCLUDE>. This means that
+both direct rendering and directives such as C<INCLUDE>. This means that
 instead of specifying L<INCLUDE_PATH|Template::Manual::Config/"INCLUDE_PATH">,
 you should set L<Mojolicious::Renderer/"paths"> to the appropriate paths.
 
