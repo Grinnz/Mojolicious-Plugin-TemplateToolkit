@@ -113,8 +113,8 @@ L<proxy object|Mojolicious::Controller/"helpers"> available as C<h>. See
 L<Mojolicious::Plugin::DefaultHelpers> and L<Mojolicious::Plugin::TagHelpers>
 for a list of all built-in helpers.
 
-Accessing helper methods directly as variables rather than via the controller
-or proxy object is deprecated and may be removed in a future release.
+Accessing helper methods directly as variables, rather than via the controller
+or proxy object, is deprecated and may be removed in a future release.
 
  $c->stash(description => 'template engine');
  $c->stash(engines => [qw(Template::Toolkit Text::Template)]);
